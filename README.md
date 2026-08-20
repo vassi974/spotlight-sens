@@ -38,18 +38,29 @@ Un moteur de recherche **hybride à 3 couches**, fusionnées par *Reciprocal Ran
 
 Un **daemon résident** (`serve.py`, port `8799` en local) garde le modèle et les index en mémoire et répond en ~15 ms — indispensable pour chercher en direct pendant la frappe. L'app native (`main.swift`, AppKit) affiche la fenêtre, capte le raccourci global et gère les aperçus.
 
-### Installation
+### Installation — une commande
 
 ```bash
-# 1. le moteur (Python 3 + fastembed + numpy)
-python3 mail_index.py      # indexe les mails Apple Mail
-python3 docs_index.py      # indexe documents / apps / réglages / dossiers
-python3 serve.py           # lance le moteur résident (port 8799)
-
-# 2. l'application
-bash app/build.sh          # produit app/SpotlightSens.app
-open app/SpotlightSens.app
+git clone https://github.com/vassi974/spotlight-sens.git
+cd spotlight-sens
+./install.command
 ```
+
+`install.command` fait tout : venv Python dédié + dépendances, compilation de
+l'app, services (LaunchAgents), premier index, lancement. Pour désinstaller :
+`./uninstall.command`. Prérequis : macOS 13+, Python 3, outils Xcode
+(`xcode-select --install`).
+
+<details><summary>Installation manuelle (si tu préfères)</summary>
+
+```bash
+python3 -m venv venv && ./venv/bin/pip install fastembed numpy certifi segno
+./venv/bin/python mail_index.py   # indexe les mails Apple Mail
+./venv/bin/python docs_index.py   # indexe documents / apps / réglages / dossiers
+./venv/bin/python serve.py        # moteur résident (port 8799)
+bash app/build.sh && open app/SpotlightSens.app
+```
+</details>
 
 ### Vie privée
 
@@ -81,18 +92,18 @@ A **3-layer hybrid** search engine, merged with *Reciprocal Rank Fusion* (RRF):
 
 A **resident daemon** (`serve.py`, local port `8799`) keeps the model and indexes warm and answers in ~15 ms — essential for live, as-you-type search. The native app (`main.swift`, AppKit) draws the window, captures the global hotkey and renders the previews.
 
-### Setup
+### Setup — one command
 
 ```bash
-# 1. the engine (Python 3 + fastembed + numpy)
-python3 mail_index.py      # index Apple Mail
-python3 docs_index.py      # index documents / apps / settings / folders
-python3 serve.py           # start the resident engine (port 8799)
-
-# 2. the app
-bash app/build.sh          # builds app/SpotlightSens.app
-open app/SpotlightSens.app
+git clone https://github.com/vassi974/spotlight-sens.git
+cd spotlight-sens
+./install.command
 ```
+
+`install.command` does everything: a dedicated Python venv + dependencies, builds
+the app, installs the background services (LaunchAgents), runs the first index and
+launches. To remove it: `./uninstall.command`. Requirements: macOS 13+, Python 3,
+Xcode command-line tools (`xcode-select --install`).
 
 ### Privacy
 

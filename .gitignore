@@ -9,6 +9,9 @@ rate.json
 # Journaux (contiennent les requêtes tapées)
 *.log
 
+# ---- Environnement Python (recréé par install.command) ----
+venv/
+
 # ---- Artefacts de build ----
 app/SpotlightSens.app/
 __pycache__/
