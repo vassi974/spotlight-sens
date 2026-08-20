@@ -1,78 +1,114 @@
-# Spotlight par le sens
+# Spotlight par le sens · Semantic Spotlight
 
-Un lanceur de recherche **local** pour macOS qui trouve par le **sens**, pas
-seulement par le nom de fichier. On presse `Cmd+Space`, on tape, et ça cherche
-dans les mails Apple Mail, les documents, les applications, les réglages système
-et les dossiers — sans avoir à dire quoi ni où chercher.
+![macOS 13+](https://img.shields.io/badge/macOS-13%2B-black) ![local only](https://img.shields.io/badge/100%25-local-2ea44f) ![licence](https://img.shields.io/badge/licence-PolyForm%20Noncommercial-blue)
 
-Tout tourne en local, sur la machine. Aucune donnée ne part sur un serveur.
+> **FR** — Un lanceur de recherche **local** pour macOS qui trouve par le **sens**, pas seulement par le nom de fichier.
+> **EN** — A **local** macOS launcher that searches by **meaning**, not just by file name.
 
-![catégorie : lanceur macOS](https://img.shields.io/badge/macOS-13%2B-black)
+`Cmd + Space` → on tape → ça cherche dans les mails, documents, applications, réglages système et dossiers. Tout tourne sur la machine, rien ne part sur un serveur. / Press `Cmd + Space`, type, and it searches your mail, documents, apps, system settings and folders. Everything runs on-device; nothing is sent to a server.
 
-## Ce que ça fait
+---
 
-- **Recherche par le sens** sur les mails et documents (comprend « facture
-  d'électricité » même si le mot exact n'y est pas).
-- **Lanceur d'applications** : taper le nom (FR ou EN) fait remonter l'app en tête
-  (« pag » → Pages, « calc » → Calculatrice).
-- **Lanceur de réglages système** : « wifi », « écran », « bluetooth » ouvrent le
-  bon panneau des Réglages.
-- **Aperçu latéral** : Quick Look interactif pour les fichiers (un STL tourne, un
-  PDF se feuillette) et un panneau texte pour les mails.
+## 🇫🇷 Français
+
+### À quoi ça sert
+
+Le Spotlight d'Apple cherche surtout par nom de fichier. Celui-ci cherche par **sens** : tu tapes une idée, il trouve le bon mail ou le bon document même si le mot exact n'y figure pas.
+
+- **Recherche par le sens** dans les mails Apple Mail et les documents (« facture d'électricité » retrouve le bon PDF même sans ces mots exacts).
+- **Lanceur d'applications** : le nom (français ou anglais) fait remonter l'app en n°1 — « pag » → Pages, « calc » → Calculatrice.
+- **Lanceur de réglages système** : « wifi », « écran », « bluetooth » ouvrent directement le bon panneau des Réglages.
+- **Dossiers** cherchables par nom, ouverts dans le Finder.
+- **Aperçu latéral** : Quick Look interactif pour les fichiers (un STL tourne, un PDF se feuillette) et un panneau texte pour lire un mail sans ouvrir Mail.
 - **Calcul et conversion** de devises directement dans la barre.
 - Fenêtre native en verre dépoli, thèmes, onglets par catégorie, tri par date.
 
-## Comment ça marche
+### Comment ça marche
 
-Moteur de recherche **hybride à 3 couches**, fusionnées par *Reciprocal Rank
-Fusion* (RRF) :
+Un moteur de recherche **hybride à 3 couches**, fusionnées par *Reciprocal Rank Fusion* (RRF) :
 
 1. **Mot exact** — SQLite FTS5 (BM25) + trigrammes.
-2. **Fautes de frappe** — `difflib` sur le vocabulaire réellement indexé
-   (« brincks » → Brinks).
-3. **Sens** — vecteurs [fastembed](https://github.com/qdrant/fastembed) (modèle
-   MiniLM multilingue, 384 dimensions).
+2. **Fautes de frappe** — `difflib` sur le vocabulaire réellement indexé (« brincks » → Brinks).
+3. **Sens** — vecteurs [fastembed](https://github.com/qdrant/fastembed) (modèle MiniLM multilingue, 384 dimensions).
 
-Un **daemon résident** (`serve.py`, port 8799 en local) garde le modèle et les
-index en mémoire pour répondre en ~15 ms — indispensable pour la recherche en
-direct pendant la frappe.
+Un **daemon résident** (`serve.py`, port `8799` en local) garde le modèle et les index en mémoire et répond en ~15 ms — indispensable pour chercher en direct pendant la frappe. L'app native (`main.swift`, AppKit) affiche la fenêtre, capte le raccourci global et gère les aperçus.
 
-## Fichiers
-
-| Fichier | Rôle |
-|---|---|
-| `serve.py` | Moteur résident (HTTP local) : `/search`, `/mailbody`, `/ping`. |
-| `mail_index.py` | Indexe Apple Mail (`.emlx`) → `mail.sqlite` + vecteurs. |
-| `docs_index.py` | Indexe documents, applications, réglages système, dossiers. |
-| `cherche.py` | Moteur de recherche 3 couches (utilisé en CLI et par le daemon). |
-| `rate_update.py` | Taux USD/EUR du jour pour la conversion. |
-| `import_theme.py` | Importe un thème Linux (base16, KDE `.colors`, Xresources, iTerm). |
-| `app/main.swift` | L'application native (AppKit) : fenêtre, hotkey, aperçus. |
-| `app/build.sh` | Compile `SpotlightSens.app`. |
-| `themes/` | Thèmes prêts à l'emploi (Nord, Dracula, Catppuccin, Gruvbox…). |
-
-## Construire l'application
+### Installation
 
 ```bash
+# 1. le moteur (Python 3 + fastembed + numpy)
+python3 mail_index.py      # indexe les mails Apple Mail
+python3 docs_index.py      # indexe documents / apps / réglages / dossiers
+python3 serve.py           # lance le moteur résident (port 8799)
+
+# 2. l'application
 bash app/build.sh          # produit app/SpotlightSens.app
 open app/SpotlightSens.app
 ```
 
-Le moteur a besoin de Python 3 avec `fastembed` et `numpy` (le projet réutilise
-un venv dédié). Première utilisation :
+### Vie privée
+
+Les index (`*.sqlite`, `*.npy`), la configuration et les journaux **ne sont pas** dans ce dépôt (voir `.gitignore`) : ils contiennent le contenu réel de tes mails et documents. Seul le code est publié.
+
+---
+
+## 🇬🇧 English
+
+### What it's for
+
+Apple's Spotlight mostly matches file names. This one matches **meaning**: you type an idea and it finds the right email or document even when the exact words aren't in it.
+
+- **Semantic search** across Apple Mail and your documents (“electricity bill” finds the right PDF even without those exact words).
+- **App launcher**: typing a name (French or English) floats the app to #1 — “pag” → Pages, “calc” → Calculator.
+- **System-settings launcher**: “wifi”, “display”, “bluetooth” open the matching Settings pane directly.
+- **Folders** searchable by name, opened in Finder.
+- **Side preview**: interactive Quick Look for files (an STL rotates, a PDF scrolls) and a text pane to read an email without opening Mail.
+- **Calculator and currency conversion** right in the search bar.
+- Native frosted-glass window, themes, category tabs, sort by date.
+
+### How it works
+
+A **3-layer hybrid** search engine, merged with *Reciprocal Rank Fusion* (RRF):
+
+1. **Exact terms** — SQLite FTS5 (BM25) + trigrams.
+2. **Typos** — `difflib` over the vocabulary actually indexed (“brincks” → Brinks).
+3. **Meaning** — [fastembed](https://github.com/qdrant/fastembed) vectors (multilingual MiniLM, 384 dimensions).
+
+A **resident daemon** (`serve.py`, local port `8799`) keeps the model and indexes warm and answers in ~15 ms — essential for live, as-you-type search. The native app (`main.swift`, AppKit) draws the window, captures the global hotkey and renders the previews.
+
+### Setup
 
 ```bash
-python3 mail_index.py      # indexe les mails
-python3 docs_index.py      # indexe documents / apps / réglages / dossiers
-python3 serve.py           # lance le moteur résident (port 8799)
+# 1. the engine (Python 3 + fastembed + numpy)
+python3 mail_index.py      # index Apple Mail
+python3 docs_index.py      # index documents / apps / settings / folders
+python3 serve.py           # start the resident engine (port 8799)
+
+# 2. the app
+bash app/build.sh          # builds app/SpotlightSens.app
+open app/SpotlightSens.app
 ```
 
-## Vie privée
+### Privacy
 
-Les index (`*.sqlite`, `*.npy`), la configuration et les journaux **ne sont pas**
-dans ce dépôt (voir `.gitignore`) : ils contiennent le contenu réel des mails et
-documents. Seul le code est publié. Tout s'exécute en local.
+The indexes (`*.sqlite`, `*.npy`), the configuration and the logs are **not** in this repository (see `.gitignore`): they hold the real content of your mail and documents. Only the code is published. Everything runs locally.
 
-## Licence
+---
 
-[PolyForm Noncommercial 1.0.0](LICENSE) — libre en usage non commercial.
+## Fichiers · Files
+
+| Fichier / File | Rôle / Role |
+|---|---|
+| `serve.py` | Moteur résident (HTTP local) : `/search`, `/mailbody`, `/ping`. / Resident engine. |
+| `mail_index.py` | Indexe Apple Mail (`.emlx`). / Indexes Apple Mail. |
+| `docs_index.py` | Indexe documents, apps, réglages, dossiers. / Indexes docs, apps, settings, folders. |
+| `cherche.py` | Moteur 3 couches (CLI + daemon). / 3-layer engine (CLI + daemon). |
+| `rate_update.py` | Taux USD/EUR. / USD/EUR rate. |
+| `import_theme.py` | Importe un thème Linux (base16, KDE, Xresources, iTerm). / Imports a Linux theme. |
+| `app/main.swift` | Application native AppKit. / Native AppKit app. |
+| `app/build.sh` | Compile `SpotlightSens.app`. / Builds the app. |
+| `themes/` | Thèmes (Nord, Dracula, Catppuccin, Gruvbox…). / Themes. |
+
+## Licence · License
+
+[PolyForm Noncommercial 1.0.0](LICENSE) — libre en usage non commercial. / free for noncommercial use.
