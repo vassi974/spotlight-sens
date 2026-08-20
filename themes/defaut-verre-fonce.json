@@ -1,0 +1,12 @@
+{
+ "name": "Défaut (verre foncé)",
+ "bg": "#1c1c1e",
+ "text": "#f2f2f7",
+ "subtext": "#9aa0a6",
+ "accent": "#3b82f6",
+ "result": "#dcc766",
+ "border": "#3a3a3c",
+ "opacity": 0.0,
+ "corner": 18,
+ "dark": true
+}

@@ -1,0 +1,12 @@
+{
+ "name": "Nord",
+ "bg": "#2e3440",
+ "text": "#eceff4",
+ "subtext": "#9aa5b4",
+ "accent": "#88c0d0",
+ "result": "#ebcb8b",
+ "border": "#3b4252",
+ "opacity": 0.5,
+ "corner": 18,
+ "dark": true
+}

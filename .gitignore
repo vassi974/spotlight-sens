@@ -1,0 +1,21 @@
+# ---- Données personnelles : NE JAMAIS publier ----
+# Index des mails et documents (contiennent le contenu réel)
+*.sqlite
+*.sqlite-*
+*.npy
+config.json
+rate.json
+
+# Journaux (contiennent les requêtes tapées)
+*.log
+
+# ---- Artefacts de build ----
+app/SpotlightSens.app/
+__pycache__/
+*.pyc
+.DS_Store
+
+# ---- Fichiers de travail temporaires ----
+_journal_entry.md
+reload_apps.log
+FINI
