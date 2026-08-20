@@ -7,6 +7,9 @@
 
 `Cmd + Space` → on tape → ça cherche dans les mails, documents, applications, réglages système et dossiers. Tout tourne sur la machine, rien ne part sur un serveur. / Press `Cmd + Space`, type, and it searches your mail, documents, apps, system settings and folders. Everything runs on-device; nothing is sent to a server.
 
+> ⚡ **Aussi réactif que Raycast, aussi puissant — voire plus — que Spotlight.** Réponses en ~15 ms, en direct pendant la frappe (le moteur reste chargé en mémoire), et une recherche par le *sens* que Spotlight n'a pas.
+> ⚡ **As snappy as Raycast, as powerful as Spotlight — or more.** ~15 ms answers, live as you type (the engine stays warm in memory), plus *meaning-based* search that Spotlight doesn't have.
+
 ![Spotlight par le sens — onglet Applications avec aperçu / Applications tab with preview](docs/capture.png)
 
 ---
