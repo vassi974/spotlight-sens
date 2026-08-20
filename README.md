@@ -7,6 +7,8 @@
 
 `Cmd + Space` → on tape → ça cherche dans les mails, documents, applications, réglages système et dossiers. Tout tourne sur la machine, rien ne part sur un serveur. / Press `Cmd + Space`, type, and it searches your mail, documents, apps, system settings and folders. Everything runs on-device; nothing is sent to a server.
 
+![Spotlight par le sens — onglet Applications avec aperçu / Applications tab with preview](docs/capture.png)
+
 ---
 
 ## 🇫🇷 Français
