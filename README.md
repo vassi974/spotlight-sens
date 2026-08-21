@@ -2,10 +2,11 @@
 
 ![macOS 13+](https://img.shields.io/badge/macOS-13%2B-black) ![local only](https://img.shields.io/badge/100%25-local-2ea44f) ![licence](https://img.shields.io/badge/licence-PolyForm%20Noncommercial-blue)
 
-> **FR** — Un lanceur de recherche **local** pour macOS qui trouve par le **sens**, pas seulement par le nom de fichier.
-> **EN** — A **local** macOS launcher that searches by **meaning**, not just by file name.
+> **FR** — Nostalgique du Spotlight de l'âge d'or du Mac (Tiger → Snow Leopard), celui qui était à la fois **cohérent** et **instantané**, je ne l'ai retrouvé ni dans sa version actuelle, ni dans les lanceurs tiers. Alors je me suis fait mon propre Spotlight — et je le partage.
+>
+> **EN** — Nostalgic for the Mac's golden-age Spotlight (Tiger → Snow Leopard) — the one that was both **coherent** and **instant** — I couldn't find that again in today's version, nor in third-party launchers. So I built my own Spotlight, and I'm sharing it.
 
-`Cmd + Space` → on tape → ça cherche dans les mails, documents, applications, réglages système et dossiers. Tout tourne sur la machine, rien ne part sur un serveur. / Press `Cmd + Space`, type, and it searches your mail, documents, apps, system settings and folders. Everything runs on-device; nothing is sent to a server.
+Un lanceur **local** qui trouve par le **sens** : `Cmd + Space`, on tape, ça cherche dans les mails, documents, applications, réglages système et dossiers. Tout tourne sur la machine, rien ne part sur un serveur. / A **local** launcher that finds by **meaning**: `Cmd + Space`, type, and it searches your mail, documents, apps, system settings and folders. Everything runs on-device; nothing leaves the machine.
 
 > ⚡ **Aussi réactif que Raycast, aussi puissant — voire plus — que Spotlight.** Réponses en ~15 ms, en direct pendant la frappe (le moteur reste chargé en mémoire), et une recherche par le *sens* que Spotlight n'a pas.
 > ⚡ **As snappy as Raycast, as powerful as Spotlight — or more.** ~15 ms answers, live as you type (the engine stays warm in memory), plus *meaning-based* search that Spotlight doesn't have.
