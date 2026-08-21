@@ -10,11 +10,9 @@
 > ⚡ **Aussi réactif que Raycast, aussi puissant — voire plus — que Spotlight.** Réponses en ~15 ms, en direct pendant la frappe (le moteur reste chargé en mémoire), et une recherche par le *sens* que Spotlight n'a pas.
 > ⚡ **As snappy as Raycast, as powerful as Spotlight — or more.** ~15 ms answers, live as you type (the engine stays warm in memory), plus *meaning-based* search that Spotlight doesn't have.
 
-![Spotlight par le sens — recherche « facture », résultats classés instantanément / typing “facture”, results ranked live](docs/spotlight-demo.gif)
+![Spotlight par le sens — lancement d'applications en direct (« adobe » → Adobe Acrobat / Illustrator / Photoshop) / live app launching](docs/spotlight-demo.gif)
 
-<sub>⚠️ Les résultats sont volontairement **floutés** dans cette démo (données personnelles réelles). La requête et les onglets restent nets. / Results are intentionally **blurred** in this demo (real personal data); the query and tabs stay sharp.</sub>
-
-![Onglet Applications avec aperçu / Applications tab with preview](docs/capture.png)
+<sub>Démo du lanceur d'applications (résultats réels, non personnels). La recherche par le **sens** dans les mails et documents fonctionne pareil — non montrée ici pour garder des données privées privées. / App-launcher demo (real, non-personal results). Meaning-based search over mail & documents works the same way — not shown here to keep private data private.</sub>
 
 ---
 
