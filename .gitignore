@@ -9,6 +9,14 @@ rate.json
 # Journaux (contiennent les requêtes tapées)
 *.log
 
+# ---- Mode démo : fausse base + sauvegardes des vrais index ----
+demo_mail.sqlite
+demo_docs.sqlite
+demo_mail_vecs.npy
+demo_docs_vecs.npy
+*.real
+.demo_active
+
 # ---- Environnement Python (recréé par install.command) ----
 venv/
 

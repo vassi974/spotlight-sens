@@ -11,9 +11,9 @@ Un lanceur **local** qui trouve par le **sens** : `Cmd + Space`, on tape, ça ch
 > ⚡ **Aussi réactif que Raycast, aussi puissant — voire plus — que Spotlight.** Réponses en ~15 ms, en direct pendant la frappe (le moteur reste chargé en mémoire), et une recherche par le *sens* que Spotlight n'a pas.
 > ⚡ **As snappy as Raycast, as powerful as Spotlight — or more.** ~15 ms answers, live as you type (the engine stays warm in memory), plus *meaning-based* search that Spotlight doesn't have.
 
-![Spotlight par le sens — lancement d'applications en direct (« adobe » → Adobe Acrobat / Illustrator / Photoshop) / live app launching](docs/spotlight-demo.gif)
+![Spotlight par le sens — « électricité » fait remonter la facture EDF par le sens / typing “electricity” surfaces the EDF bill by meaning](docs/spotlight-demo.gif)
 
-<sub>Démo du lanceur d'applications (résultats réels, non personnels). La recherche par le **sens** dans les mails et documents fonctionne pareil — non montrée ici pour garder des données privées privées. / App-launcher demo (real, non-personal results). Meaning-based search over mail & documents works the same way — not shown here to keep private data private.</sub>
+<sub>Recherche par le **sens** : « électricité » remonte « Votre échéancier d'énergie » (EDF) — un résultat qui **ne contient pas le mot**. Démo sur un **jeu de données fictif** (aucune donnée personnelle réelle). / Meaning-based search: “electricity” surfaces an EDF energy statement that **doesn't contain the word**. Demo on a **fictional dataset** (no real personal data).</sub>
 
 ---
 
